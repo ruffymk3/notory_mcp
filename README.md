@@ -1,7 +1,11 @@
 # Notory MCP server
 
 A small [MCP](https://modelcontextprotocol.io) server that lets an AI assistant
-work with your Notory inventory through the normal REST API.
+work with your [Notory](https://notory.io/) inventory through the normal REST API.
+
+Notory is a flexible, GDPR-compliant IT inventory and asset management (ITAM)
+tool - self-hosted or as EU-hosted SaaS. Product: https://notory.io/ · Docs:
+https://support.notory.io/
 
 You hand it a Notory API token, point it at your instance, and the assistant can
 look things up ("which laptops are in maintenance?") or, if the token allows it,
