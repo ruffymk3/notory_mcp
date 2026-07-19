@@ -34,11 +34,10 @@ Settings, API tokens. It's shown once and starts with `inv_`. Give it the `read`
 scope if you only want look-ups, or `write` if the assistant should be able to
 change things.
 
-Build it:
+Run it straight from npm with `npx` - no clone, no build step:
 
 ```bash
-npm install
-npm run build
+npx -y @notory/mcp
 ```
 
 Then tell your MCP client where it lives. Most clients read a JSON config that
@@ -48,8 +47,8 @@ looks like this:
 {
   "mcpServers": {
     "notory": {
-      "command": "node",
-      "args": ["/absolute/path/to/notory_mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@notory/mcp"],
       "env": {
         "NOTORY_BASE_URL": "https://demo.notory.io",
         "NOTORY_API_TOKEN": "inv_your_token_here"
@@ -61,6 +60,10 @@ looks like this:
 
 Restart the client and you're set. Try asking it to list the assets in
 maintenance, or to show a specific asset by its serial number.
+
+Prefer to run from source (for development)? Clone the repo, then `npm install`
+and `npm run build`, and point the client at `node` with the absolute path to
+`dist/index.js`.
 
 ## Configuration
 
