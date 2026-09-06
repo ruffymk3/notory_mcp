@@ -90,4 +90,4 @@ npm start     # run the built server (needs the two env vars set)
 
 ## License
 
-Proprietary. Copyright TougeTech - Raphael Ernst.
+MIT - see [LICENSE](./LICENSE). Copyright (c) 2026 TougeTech - Raphael Ernst.
