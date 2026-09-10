@@ -1,0 +1,52 @@
+# Zeilenenden: im Repo UND im Arbeitsbaum immer LF.
+#
+# Dieses Verzeichnis liegt gleichzeitig auf Windows (Laptop) und Linux
+# (srv01) und wird von Syncthing byteweise gespiegelt. Git geht davon aus,
+# dass ein Arbeitsbaum EINER Maschine gehoert: mit core.autocrlf=true
+# schreibt es auf Windows CRLF hinein und rechnet beim Einchecken zurueck.
+# Syncthing kennt diese Rechnung nicht - es traegt die CRLF-Bytes nach
+# Linux, und dort wandelt git nichts um. Ergebnis: git sieht auf srv01
+# einen Unterschied, wo inhaltlich keiner ist.
+#
+# `eol=lf` gilt fuer den ARBEITSBAUM und schlaegt core.autocrlf. Damit steht
+# auf beiden Rechnern dasselbe Byte, und Syncthing hat nichts mehr hin- und
+# herzutragen. Die Attribute wirken auf jeder Maschine, die das Repo klont -
+# eine Konfiguration am einzelnen Rechner tut das nicht.
+
+* text=auto eol=lf
+
+# Shell-Skripte muessen LF behalten, sonst bricht die Shebang unter bash
+# an dem angehaengten \r. Von der Zeile darueber bereits abgedeckt; bleibt
+# ausdruecklich stehen, weil genau dieser Fall schon einmal weh getan hat.
+*.sh text eol=lf
+*.ps1 text eol=lf
+
+# Windows-Stapelverarbeitung braucht CRLF - cmd.exe verschluckt sich sonst
+# an mehrzeiligen Bloecken.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binaerdateien fasst git nicht an. `text=auto` erkennt sie meist selbst;
+# hier stehen die haeufigen ausdruecklich, damit eine Fehlerkennung keinen
+# Schaden anrichtet: eine umgewandelte Bilddatei ist kaputt, nicht unschoen.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.pdf   binary
+*.zip   binary
+*.gz    binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.mp4   binary
+*.webm  binary
+*.mp3   binary
+*.wav   binary
+*.docx  binary
+*.xlsx  binary
+*.pem   binary
+*.key   binary
