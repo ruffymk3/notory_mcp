@@ -130,7 +130,7 @@ server.tool(
     "'/api/v1/assets' or '/api/v1/assets/{id}'. Pass query parameters via `query`.",
   {
     path: z.string().describe("Path starting with '/', e.g. /api/v1/assets"),
-    query: z.record(z.union([z.string(), z.number(), z.boolean()])).optional(),
+    query: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).optional(),
   },
   async ({ path, query }) => result(await call("GET", path, { query }))
 );
@@ -143,7 +143,7 @@ server.tool(
   {
     method: z.enum(HTTP_METHODS),
     path: z.string().describe("Path starting with '/', e.g. /api/v1/assets"),
-    query: z.record(z.union([z.string(), z.number(), z.boolean()])).optional(),
+    query: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])).optional(),
     body: z.unknown().optional().describe("JSON request body for POST/PUT/PATCH"),
   },
   async ({ method, path, query, body }) =>
